@@ -24,6 +24,10 @@ class Weapon
             player.TakeDamage(_damage);
             _bullets--;
         }
+        else
+        {
+            throw new InvalidOperationException();
+        }
     }
 }
 
@@ -54,11 +58,17 @@ class Bot
 
     public Bot(Weapon weapon)
     {
+        if (weapon == null)
+            throw new ArgumentNullException(nameof(weapon));
+
         _weapon = weapon;
     }
 
     public void OnSeePlayer(Player player)
     {
+        if (player == null)
+            throw new ArgumentNullException(nameof(player));
+
         _weapon.Fire(player);
     }
 }
