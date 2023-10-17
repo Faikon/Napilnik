@@ -19,14 +19,14 @@ class Weapon
 
     public void Fire(Player player)
     {
-        if (HasBullets)
+        if (HasBullets == false)
         {
-            player.TakeDamage(_damage);
-            _bullets--;
+            throw new InvalidOperationException();
         }
         else
         {
-            throw new InvalidOperationException();
+            player.TakeDamage(_damage);
+            _bullets--;
         }
     }
 }
@@ -58,10 +58,7 @@ class Bot
 
     public Bot(Weapon weapon)
     {
-        if (weapon == null)
-            throw new ArgumentNullException(nameof(weapon));
-
-        _weapon = weapon;
+        _weapon = weapon ?? throw new ArgumentNullException(nameof(weapon));
     }
 
     public void OnSeePlayer(Player player)
