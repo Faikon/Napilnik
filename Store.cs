@@ -32,6 +32,7 @@ namespace Store
             cart.Add(iPhone12, 9); //Ошибка, после заказа со склада убираются заказанные товары
         }
     }
+    
     public class Shop
     {
         private Warehouse _warehouse;
